@@ -16,7 +16,7 @@ The overall goal of **Project Kobon** is to find arrangements of **k** lines tha
 
 # What is the Kobon Triangle Problem?
 
-The Kobon Triangle Problem investigates the maximum number of non-overlapping triangles that can be formed by an arrangement of k lines.
+The Kobon Triangle Problem investigates the maximum number of non-overlapping triangles that can be formed by an arrangement of **k** lines.
 
 There is already a known formula that gives the upper bound for each value of **k**, BUT the problem is still unsolved becuase it is not known whether these upper bounds are achievable.
 
