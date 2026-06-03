@@ -1,6 +1,5 @@
 # Project Kobon
 
-
 **Project Kobon** is a search program designed to find solutions to the Kobon Triangle Problem.
 
 
@@ -16,7 +15,6 @@ The overall goal of **Project Kobon** is to find arrangements of **k** lines tha
 
 
 # What is the Kobon Triangle Problem?
-
 
 The Kobon Triangle Problem investigates the maximum number of non-overlapping triangles that can be formed by an arrangement of k lines.
 
