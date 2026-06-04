@@ -1,5 +1,6 @@
 import sys
 import subprocess
+from Solver.state import create_random_state
 
 def main():
     print("=============================\n∥       Project Kobon       ∥\n=============================")
@@ -25,6 +26,7 @@ def main():
                 return
             
             k, iters, restarts = int(parts[0]), int(parts[1]), int(parts[2])
+            arrangement = create_random_state(k)
             goal_input = parts[3].lower()
             if(goal_input not in ("ma","mi")):
                 print("Error: Last parameter must be 'ma' or 'mi'.")
@@ -44,7 +46,8 @@ def main():
                 print("Error: Please provide all 4 parameters.")
                 return
             
-            k, reset_every = int(parts[0]), int(parts[1])           
+            k, reset_every = int(parts[0]), int(parts[1])      
+            arrangement = create_random_state(k)     
             goal_input = parts[2].lower()
             if(goal_input not in ("ma","mi")):
                 print("Error: Last parameter must be 'ma' or 'mi'.")
