@@ -32,5 +32,6 @@ def nudge(lines):
         chosenLine.angle = chosenLine.angle % 180
     else:
         chosenLine.offset += random.uniform(-0.05,0.05)
+        chosenLine.offset = max(-1, min(1, chosenLine.offset))
 
     return nudgedLines
