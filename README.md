@@ -8,7 +8,7 @@ The program includes:
 - A solver
 - A viewer
 - Remote reporting (via Discord)
-- GPU-based calculations (via CuPy)
+- CPU-based calculations (via numPY)
 
 
 The overall goal of **Project Kobon** is to find arrangements of **k** lines that produce the maximum number of non-overlapping triangles. When reading sources about the Kobon Triangle Problem, you may see **n** used instead of **k**. Both symbols represent the same thing: the number of lines in the arrangement.
