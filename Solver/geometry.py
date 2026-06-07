@@ -48,9 +48,69 @@ def count_triangles(lines):
 
         firstLine = currentIntersection[0]
         secondLine = currentIntersection[1]
+        xCoord = currentIntersection[2]
+        yCoord = currentIntersection[3]
 
-        pointsOnLine[firstLine].append(i)
-        pointsOnLine[secondLine].append(i)
+        if np.abs(a[firstLine]) < 0.5:
+            pointsOnLine[firstLine].append((yCoord, i))
+        else:
+            pointsOnLine[firstLine].append((xCoord, i))
+
+        if np.abs(a[secondLine]) < 0.5:
+            pointsOnLine[secondLine].append((yCoord, i))
+        else:
+            pointsOnLine[secondLine].append((xCoord, i))
     
     for i in range(len(pointsOnLine)):
-        pointsOnLine[i]
+        pointsOnLine[i].sort()
+
+    sortedIndicesOnLine = []
+    for i in range(len(pointsOnLine)):
+        sortedIndicesOnLine.append([item[1] for item in pointsOnLine[i]])
+    
+    triangleCount = 0
+
+    for i in range(len(sortedIndicesOnLine)):
+        for j in range(i + 1, len(sortedIndicesOnLine)):
+            for k in range(j + 1, len(sortedIndicesOnLine)):
+                ijPoint = None
+                ikPoint = None
+                jkPoint = None
+
+                for h in range(len(intersections)):
+                    currentIntersection = intersections[h]
+
+                    firstLine = currentIntersection[0]
+                    secondLine = currentIntersection[1]
+
+                    if(firstLine == i and secondLine == j):
+                        ijPoint = h
+                    elif(firstLine == i and secondLine == k):
+                        ikPoint = h
+                    elif(firstLine == j and secondLine == k):
+                        jkPoint = h
+                
+                if(ijPoint == None or ikPoint == None or jkPoint == None):
+                    continue
+
+                ijPosition = sortedIndicesOnLine[i].index(ijPoint)
+                ikPosition = sortedIndicesOnLine[i].index(ikPoint)
+
+                if(np.abs(ijPosition - ikPosition) != 1):
+                    continue
+
+                ijPosition = sortedIndicesOnLine[j].index(ijPoint)
+                jkPosition = sortedIndicesOnLine[j].index(jkPoint)
+
+                if(np.abs(ijPosition - jkPosition) != 1):
+                    continue
+
+                ikPosition = sortedIndicesOnLine[k].index(ikPoint)
+                jkPosition = sortedIndicesOnLine[k].index(jkPoint)
+
+                if(np.abs(ikPosition - jkPosition) != 1):
+                    continue
+
+                triangleCount += 1
+    
+    return triangleCount
