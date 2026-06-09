@@ -1,5 +1,6 @@
 import numpy as np
 import random
+import math
 
 from Solver.geometry import count_triangles
 from Solver.state import create_random_state, nudge
