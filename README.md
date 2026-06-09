@@ -24,6 +24,9 @@ This gap between what is theoretically possible vs what can actually be construc
 
 
 # Installation
+Background info:<br>
+Make sure to have C++ installed --> [Here](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170) <-- <br>
+Python 3.13.13 is recommended (for packages) --> [Here](https://www.python.org/downloads/windows/) <--
 
 1. Clone or download the GitHub repo.
 
