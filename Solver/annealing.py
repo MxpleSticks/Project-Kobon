@@ -33,12 +33,15 @@ def runAnnealing(k, iters, restarts, goalText):
         temperature = startTemperature
 
         for j in range(iters):
-            currentArrangement = nudge(currentState)
-            newScore = countTriangles(currentArrangement)
+            newState = nudge(currentState)
+            newScore = countTriangles(newState)
 
             if(goalText == "MAXIMIZE"):
                 if(newScore > currentScore):
-                    currentState = currentArrangement
+                    currentState = newState
                     currentScore = newScore
                 else:
-                    pass
+                    prob = math.exp((newScore - currentScore) / temperature)
+                    if(random.random() < prob):
+                        currentState = newState
+                        currentScore = newScore
