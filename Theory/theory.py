@@ -1,2 +1,2 @@
-def tamura_upper_bound(k):
+def tamuraUpperBound(k):
     return (k * (k - 2)) // 3

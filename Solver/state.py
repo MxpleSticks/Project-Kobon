@@ -6,7 +6,7 @@ class LineState:
     angle: float
     offset: float
 
-def create_random_state(k):
+def createRandomState(k):
     lines = []
 
     for i in range(k):

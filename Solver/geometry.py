@@ -1,6 +1,6 @@
 import numpy as np
 
-def count_triangles(lines):
+def countTriangles(lines):
     newAngle = []
     newOffset = []
     
