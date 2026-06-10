@@ -45,3 +45,51 @@ def runAnnealing(k, iters, restarts, goalText):
                     if(random.random() < prob):
                         currentState = newState
                         currentScore = newScore
+            if(currentScore > bestScore):
+                bestScore = currentScore
+                bestState = currentState
+
+            temperature *= coolingRate
+    
+        topResults = updateResults(topResults, bestState, bestScore)
+    
+    return topResults
+
+def runAnnealingUntil(k, resetEvery, goalText, targetGap):
+    ceiling = tamuraUpperBound(k)
+    topResults = []
+
+    currentState = createRandomState(k)
+    currentScore = countTriangles(currentState)
+    temperature = startTemperature
+
+    iteration = 0
+
+    while True:
+        if((ceiling - currentScore) <= targetGap):
+            print(f"Target gap of {targetGap} reached!!! Score: {currentScore} (Ceiling: {ceiling})")
+            topResults = updateResults(topResults, currentState, currentScore)
+            break
+
+        if(iteration > 0 and iteration % resetEvery == 0):
+            currentState = createRandomState(k)
+            currentScore = countTriangles(currentState)
+            temperature = startTemperature
+        
+        newState = nudge(currentState)
+        newScore = countTriangles(newState)
+
+        if(goalText == "MAXIMIZE"):
+            if(newScore > currentScore):
+                currentState = newState
+                currentScore = newScore
+            else:
+                prob = math.exp((newScore - currentScore) / temperature)
+                if(random.random() < prob):
+                    currentState = newState
+                    currentScore = newScore
+        
+        temperature *= coolingRate
+        iteration += 1
+
+    return topResults

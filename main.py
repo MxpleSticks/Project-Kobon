@@ -1,6 +1,7 @@
 import sys
 import subprocess
 from Solver.state import createRandomState
+from Solver.annealing import runAnnealingUntil, runAnnealing
 
 def main():
     print("=============================\n∥       Project Kobon       ∥\n=============================")
@@ -33,7 +34,8 @@ def main():
                 return
             goalText = "MAXIMIZE" if goalInput == "ma" else "MINIMIZE"
             print(f"\nConfiguration complete. Running {goalText} solver...")
-            # run_annealing(k, iters, restarts, goalText)
+            
+            runAnnealing(k, iters, restarts, goalText)
 
         
         elif(choice == 2):
@@ -55,10 +57,12 @@ def main():
             goalText = "MAXIMIZE" if goalInput == "ma" else "MINIMIZE"
             targetGap = int(parts[3])
             print(f"\nRunning {goalText} solver, resetting every {resetEvery} iterations until within {targetGap} of ceiling...")
-            # run_annealing_until(k, resetEvery, goalText, targetGap)
+            
+            runAnnealingUntil(k, resetEvery, goalText, targetGap)
 
         elif(choice == 3):
             print("Opening viewer.py shortly...")
+            
             subprocess.run([sys.executable, "Viewer/viewer.py"])
     
     
