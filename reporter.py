@@ -1,17 +1,26 @@
 import json
 import discord_webhook as dw
+from Theory.theory import tamuraUpperBound
 
 def sendResults(webhookURL, topResults, k, goalText):
     if(webhookURL == ""):
         return
     
-    contentText = "Project Kobon Results\n"
-    contentText += "Lines: " + str(k) + " Goal: " + goalText + "\n"
-    contentText += "Top Scores:\n"
+    ceiling = tamuraUpperBound(k)
+
+    contentText = "@everyone\n\n"
+    contentText += "PROJECT KOBON RESULTS\n\n"
+    contentText += "[ PARAMETERS ]\n"
+    contentText += "Upper Bound: " + str(ceiling) + " triangles\n"
+    contentText += "Lines: " + str(k) + "\n"
+    contentText += "Goal: " + goalText + " Triangles\n\n"
+    contentText += "[ BEST RESULTS ]\n"
     
+    rank = 1
+
     for i in topResults:
-        score = i[0]
-        contentText += "Score: " + str(score) + " triangles\n"
+        contentText += "#" + str(rank) + "  " + str(i[0]) + " triangles\n"
+        rank += 1
     
     saveData = []
 
