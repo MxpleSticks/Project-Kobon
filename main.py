@@ -2,6 +2,7 @@ import sys
 import subprocess
 from Solver.state import createRandomState
 from Solver.annealing import runAnnealingUntil, runAnnealing
+from reporter import sendResults
 
 def main():
     print("=============================\n∥       Project Kobon       ∥\n=============================")
@@ -33,9 +34,13 @@ def main():
                 print("Error: Last parameter must be 'ma' or 'mi'.")
                 return
             goalText = "MAXIMIZE" if goalInput == "ma" else "MINIMIZE"
+
+            webhookURL = input("Enter Discord Webhook URL: ")
+
             print(f"\nConfiguration complete. Running {goalText} solver...")
             
-            runAnnealing(k, iters, restarts, goalText)
+            topResults = runAnnealing(k, iters, restarts, goalText)
+            sendResults(webhookURL, topResults, k, goalText)
 
         
         elif(choice == 2):
@@ -56,10 +61,14 @@ def main():
                 return
             goalText = "MAXIMIZE" if goalInput == "ma" else "MINIMIZE"
             targetGap = int(parts[3])
+            
+            webhookURL = input("Enter Discord Webhook URL: ")
+            
             print(f"\nRunning {goalText} solver, resetting every {resetEvery} iterations until within {targetGap} of ceiling...")
             
-            runAnnealingUntil(k, resetEvery, goalText, targetGap)
-
+            topResults = runAnnealingUntil(k, resetEvery, goalText, targetGap)
+            sendResults(webhookURL, topResults, k, goalText)
+            
         elif(choice == 3):
             print("Opening viewer.py shortly...")
             
