@@ -12,7 +12,7 @@ with dpg.window(label="Instructions (usage guide)", modal=True, show=True, tag="
         dpg.add_text(
             "Welcome to Project Kobon's output viewer! \n \n"
             
-            "Import the file your Discord Webhook outputed into the imports field (left side) to \n"
+            "Import the file your Discord Webhook outputed into the imports field (right side) to \n"
             "to view it."
         )
     

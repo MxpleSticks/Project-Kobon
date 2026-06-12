@@ -8,7 +8,7 @@ def sendResults(webhookURL, topResults, k, goalText):
     
     ceiling = tamuraUpperBound(k)
 
-    contentText = "@everyone\n\n"
+    contentText = "@everyone\n"
     contentText += "PROJECT KOBON RESULTS\n\n"
     contentText += "[ PARAMETERS ]\n"
     contentText += "Upper Bound: " + str(ceiling) + " triangles\n"

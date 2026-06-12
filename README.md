@@ -52,6 +52,8 @@ Python 3.13.13 is recommended (for packages) --> [Here](https://www.python.org/d
 | **macOS** | 12.0+ (Monterey) | Not currently supported natively |
 | **Linux** | Ubuntu 22.04+ | Not currently supported natively |
 
+**The only way to run this program on macOS or Linux is to build via source.**
+
 
 # Usage
 
