@@ -2,6 +2,7 @@
 
 **Project Kobon** is a search program designed to find solutions to the Kobon Triangle Problem.
 
+![Alt text](https://i.imgur.com/Nk4YgEc.png)
 
 The program includes:
 - Simple terminal interactions
@@ -24,7 +25,16 @@ This gap between what is theoretically possible vs what can actually be construc
 
 
 # Installation
-Background info:<br>
+### Using the Installer (Recommended):
+
+1. Navigate to the GitHub Releases page.
+
+2. Download the latest [.exe](https://github.com/MxpleSticks/Project-Kobon/releases) file.
+
+3. Run the .exe file to launch the application.
+
+### Building from Source:
+
 Make sure to have C++ installed --> [Here](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170) <-- <br>
 Python 3.13.13 is recommended (for packages) --> [Here](https://www.python.org/downloads/windows/) <--
 
@@ -33,6 +43,14 @@ Python 3.13.13 is recommended (for packages) --> [Here](https://www.python.org/d
 2. Install the required dependencies: pip install -r requirements.txt
 
 3. Run the program: python main.py
+
+# Support
+
+| Platform | Minimum Version | Download Link / Instructions |
+| :--- | :--- | :--- |
+| **Windows** | Windows 10/11 | Download the [.exe](https://github.com/MxpleSticks/Project-Kobon/releases) installer |
+| **macOS** | 12.0+ (Monterey) | Not currently supported natively |
+| **Linux** | Ubuntu 22.04+ | Not currently supported natively |
 
 
 # Usage
