@@ -4,12 +4,23 @@ import subprocess
 from rich.console import Console
 from rich.panel import Panel
 from rich.rule import Rule
+from rich.progress import Progress, SpinnerColumn, TextColumn, TimeElapsedColumn
 
 from Solver.state import createRandomState
 from Solver.annealing import runAnnealingUntil, runAnnealing
 from reporter import sendResults
 
 console = Console()
+
+
+def create_spinner():
+    return Progress(
+        SpinnerColumn(),
+        TextColumn("[progress.description]{task.description}"),
+        TimeElapsedColumn(),
+        console=console,
+        transient=True,
+    )
 
 
 def show_menu():
@@ -66,12 +77,14 @@ def main():
                 f"Running [bold]{goalText}[/bold] solver..."
             )
 
-            with console.status("[yellow]Searching for solutions...[/]"):
+            with create_spinner() as progress:
+                progress.add_task("[yellow]Searching for solutions...[/]", total=None)
                 topResults = runAnnealing(k, iters, restarts, goalText)
 
             console.print("[bold green]✓ Solver finished[/]")
 
-            with console.status("[yellow]Sending results...[/]"):
+            with create_spinner() as progress:
+                progress.add_task("[yellow]Sending results...[/]", total=None)
                 sendResults(webhookURL, topResults, k, goalText)
 
             console.print("[bold green]✓ Results sent[/]")
@@ -110,17 +123,14 @@ def main():
                 f"until within [cyan]{targetGap}[/cyan] of ceiling..."
             )
 
-            with console.status("[yellow]Searching for solutions...[/]"):
-                topResults = runAnnealingUntil(
-                    k,
-                    resetEvery,
-                    goalText,
-                    targetGap
-                )
+            with create_spinner() as progress:
+                progress.add_task("[yellow]Searching for solutions...[/]", total=None)
+                topResults = runAnnealingUntil(k, resetEvery, goalText, targetGap)
 
             console.print("[bold green]✓ Solver finished[/]")
 
-            with console.status("[yellow]Sending results...[/]"):
+            with create_spinner() as progress:
+                progress.add_task("[yellow]Sending results...[/]", total=None)
                 sendResults(webhookURL, topResults, k, goalText)
 
             console.print("[bold green]✓ Results sent[/]")
