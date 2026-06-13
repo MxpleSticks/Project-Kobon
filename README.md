@@ -2,7 +2,7 @@
 
 **Project Kobon** is a search program designed to find solutions to the Kobon Triangle Problem.
 
-![Alt text](https://i.imgur.com/R9ASiuj.png)
+![Alt text](https://i.imgur.com/Tii75GE.png)
 
 The program includes:
 - Simple terminal interactions
