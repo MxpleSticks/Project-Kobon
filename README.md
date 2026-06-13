@@ -2,7 +2,7 @@
 
 **Project Kobon** is a search program designed to find solutions to the Kobon Triangle Problem.
 
-![Alt text](https://i.imgur.com/Nk4YgEc.png)
+![Alt text](https://i.imgur.com/R9ASiuj.png)
 
 The program includes:
 - Simple terminal interactions
@@ -64,3 +64,8 @@ When the program is launched you will be presented with 3 options:
 2. Run until target | searches until a user-specific number of triangles is reached.
 
 3. Open viewer | Opens the viewer for inspecting the programs outputs.
+
+# Performance
+
+### Project kobon can utilize as much of the cpu as you want (8 terminals open)
+![Alt text](https://i.imgur.com/szPhFHW.png)
