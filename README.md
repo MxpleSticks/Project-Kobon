@@ -67,5 +67,6 @@ When the program is launched you will be presented with 3 options:
 
 # Performance
 
-### Project kobon can utilize as much of the cpu as you want (Make sure you have a working cooling system)
+### WARNING: make sure you have a good cooling system/setup
+### Project kobon can utilize as much of the cpu as you specify
 ![Alt text](https://i.imgur.com/szPhFHW.png)
