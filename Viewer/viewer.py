@@ -214,7 +214,7 @@ with dpg.window(label="Instructions (usage guide)", modal=True, show=True, tag="
             "- white lines for JSON visulization\n"
             "- blue highlighted regions help visulize triangles\n"
             "- The JSON panel shows the raw JSON data\n"
-            "- The info panel displays triangle count, number of lines and current traingle set\n\n"
+            "- The info panel displays triangle count, number of lines and current traingle arrangement\n\n"
 
             "Tip: Larger arrangements can contain ALOT of overlapping triangles, making the\n"
             "visualization look dense. You can cycle through results to view different\n"
