@@ -9,17 +9,17 @@ def sendResults(webhookURL, topResults, k, goalText):
     ceiling = tamuraUpperBound(k)
 
     contentText = "@everyone\n"
-    contentText += "PROJECT KOBON RESULTS\n\n"
-    contentText += "[ PARAMETERS ]\n"
-    contentText += "Upper Bound: " + str(ceiling) + " triangles\n"
-    contentText += "Lines: " + str(k) + "\n"
-    contentText += "Goal: " + goalText + " Triangles\n\n"
-    contentText += "[ BEST RESULTS ]\n"
+    contentText += "**△ PROJECT KOBON RESULTS △**\n\n"
+    contentText += "[△ PARAMETERS ]\n"
+    contentText += "|- Upper Bound :  " + str(ceiling) + " triangles\n"
+    contentText += "|- Lines :  " + str(k) + "\n"
+    contentText += "|- Goal :  " + goalText + " Triangles\n\n"
+    contentText += "[△ BEST RESULTS ]\n"
     
     rank = 1
 
     for i in topResults:
-        contentText += "#" + str(rank) + "  " + str(i[0]) + " triangles\n"
+        contentText += "|#" + str(rank) + "  " + str(i[0]) + " triangles\n"
         rank += 1
     
     saveData = []
