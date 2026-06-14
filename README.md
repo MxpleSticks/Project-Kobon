@@ -1,6 +1,7 @@
 # Project Kobon
 
-**Project Kobon** is a search program designed to find solutions to the Kobon Triangle Problem.
+**Project Kobon** is a search program designed to find solutions to the Kobon Triangle Problem.<br>
+**Check out the project on --> [stardance](https://stardance.hackclub.com/projects/5309) <--**
 
 ![Alt text](https://i.imgur.com/Tii75GE.png)
 
