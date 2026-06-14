@@ -195,7 +195,7 @@ def updateView():
 
 dpg.create_context()
 
-with dpg.window(label="Instructions (usage guide)", modal=True, show=True, tag="popup", width=600, height=400, pos=[100, 100], no_resize=True, no_move=True):
+with dpg.window(label="Instructions (usage guide)", modal=True, show=True, tag="popup", width=600, height=400, pos=[100, 60], no_resize=True, no_move=True):
     
 
     with dpg.child_window(height=-40, border=False):
