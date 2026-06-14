@@ -5,10 +5,10 @@
 ![Alt text](https://i.imgur.com/Tii75GE.png)
 
 The program includes:
-- Simple terminal interactions
+- Simple terminal interface/interactions
 - A solver
-- A viewer
-- Remote reporting (via Discord)
+- A viewer (Visulizes json data)
+- Remote reporting (via Discord Webhook)
 - CPU-based calculations (via NumPy)
 
 
@@ -42,7 +42,7 @@ Python 3.13.13 is recommended (for packages) --> [Here](https://www.python.org/d
 
 2. Install the required dependencies: pip install -r requirements.txt
 
-3. Run the program: python main.py
+3. Run the program: py main.py or python main.py
 
 # Support
 
