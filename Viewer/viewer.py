@@ -12,7 +12,7 @@ currIdx = 0
 blue = [(0, 125 + i * 10, 255, 100) for i in range(6)]
 
 def nextIdx():
-    global currIdx  # Fixed: matches currIdx
+    global currIdx
     if(currIdx + 1 < len(loadedData)):
         currIdx += 1
         updateView()
