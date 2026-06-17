@@ -1,6 +1,12 @@
 import multiprocessing
 import sys
 import subprocess
+import os
+
+import random
+import numpy as np
+import time
+import math
 
 from rich.console import Console
 from rich.panel import Panel
@@ -12,6 +18,76 @@ from Solver.annealing import runAnnealingUntil, runAnnealing
 from reporter import sendResults
 
 console = Console()
+
+def workerRun(arg):
+    maxSeed = 2**32 - 1
+    
+    seed = (int((time.time() * 1000)) + os.getpid()) % maxSeed
+    
+    random.seed(seed)
+    np.random.seed(seed)
+    
+    k, iters, restarts, goalText = arg
+    return runAnnealing(k, iters, restarts, goalText)
+
+
+def workerRunUntil(arg):
+    maxSeed = 2**32 - 1
+    
+    seed = (int((time.time() * 1000)) + os.getpid()) % maxSeed
+    random.seed(seed)
+    np.random.seed(seed)
+    k, resetEvery, goalText, targetGap = arg
+
+    return runAnnealingUntil(k, resetEvery, goalText, targetGap)
+
+def getScore(resultItem):
+    return resultItem[0]
+
+
+def mergeResults(resultsList):
+    allResults = []
+    for i in resultsList:
+        allResults.extend(i)
+    
+    allResults.sort(key=getScore, reverse=True)
+
+    finalTop = []
+    seenScores = set()
+
+    for i in allResults:
+        score = i[0]
+        if(score not in seenScores):
+            finalTop.append(i)
+            seenScores.add(score)
+        if(len(finalTop) == 3):
+            break
+    
+    return finalTop
+
+def getWorkerCount():
+    totalCores = os.cpu_count()
+    safeMaxLimit = max(1, totalCores - 1)
+    safeModeDefault = max(1, totalCores - 4)
+
+    console.print(
+    f"[dim]Recommended: {safeModeDefault} workers[/dim]"
+    )
+    console.print(
+        f"[dim]Maximum: {safeMaxLimit} workers[/dim]"
+    )
+    
+    choice = input(f"Worker Processes [{safeModeDefault}]: ").strip().lower()
+
+    if choice == "max":
+        console.print(f"[cyan]Using maximum worker count:[/] {safeMaxLimit}")
+        return safeMaxLimit
+    elif(choice.isdigit()):
+        userChoice = int(choice)
+        actual = min(userChoice, safeMaxLimit)
+        return actual
+    else:
+        return safeModeDefault
 
 
 def create_spinner():
@@ -78,9 +154,15 @@ def main():
                 f"Running [bold]{goalText}[/bold] solver..."
             )
 
+            workers = getWorkerCount()
+            restartsPerWorker = math.ceil(restarts / workers)
+            tasks = [(k, iters, restartsPerWorker, goalText) for _ in range(workers)]
+
             with create_spinner() as progress:
-                progress.add_task("[yellow]Searching for solutions...[/]", total=None)
-                topResults = runAnnealing(k, iters, restarts, goalText)
+                progress.add_task(f"[yellow]Searching with {workers} workers...[/]", total=None)
+                with multiprocessing.Pool(processes=workers) as pool:
+                    raw_results = pool.map(workerRun, tasks)
+                    topResults = mergeResults(raw_results)
 
             console.print("[bold green]✓ Solver finished[/]")
 
@@ -124,9 +206,16 @@ def main():
                 f"until within [cyan]{targetGap}[/cyan] of ceiling..."
             )
 
+            workers = getWorkerCount()
+            tasks = [(k, resetEvery, goalText, targetGap) for _ in range(workers)]
+
             with create_spinner() as progress:
-                progress.add_task("[yellow]Searching for solutions...[/]", total=None)
-                topResults = runAnnealingUntil(k, resetEvery, goalText, targetGap)
+                progress.add_task(f"[yellow]Racing {workers} workers to target...[/]", total=None)
+                with multiprocessing.Pool(processes=workers) as pool:
+                    for result in pool.imap_unordered(workerRunUntil, tasks):
+                        topResults = result
+                        pool.terminate()
+                        break
 
             console.print("[bold green]✓ Solver finished[/]")
 
