@@ -7,8 +7,8 @@
 
 The program includes:
 - Simple terminal interface/interactions
-- A solver
-- A viewer (Visulizes json data)
+- A solver (heuristic optimization based algorith)
+- A viewer (Visualizes JSON data)
 - Remote reporting (via Discord Webhook)
 - CPU-based calculations (via NumPy)
 
@@ -23,6 +23,22 @@ The Kobon Triangle Problem investigates the maximum number of non-overlapping tr
 There is already a known formula that gives the upper bound for each value of **k**, BUT the problem is still unsolved because it is not known whether these upper bounds are achievable.
 
 This gap between what is theoretically possible vs what can actually be constructed is what keeps the problem unsolved.
+
+
+# How it works
+
+**Project Kobon** works by using a heuristic optimization algorithm to search for solutions to the Kobon Triangle Problem, without having to check every possible configuration of lines. (Which would take WAY too long)
+
+The algorithm works as follows:
+
+- The user enters their search settings into **main.py**.
+- These settings are then passed to **annealing.py**.
+- **annealing.py** works with the other modules to test different configurations of lines and count the number of triangles produced.
+- Better configurations are kept and looked into, while weaker ones are rejected.
+- The results are passed to **reporter.py**, which creates a text and JSON report sent through Discord Webhooks.
+- The JSON can then be loaded into the viewer to visualize the results.
+
+This is the gist of what goes on under the hood of **Project Kobon**.
 
 
 # Installation
@@ -65,9 +81,11 @@ When the program is launched you will be presented with 3 options:
 2. Run until target | searches until a user-specific number of triangles is reached.
 
 3. Open viewer | Opens the viewer for inspecting the programs outputs.
+![viewer GUI](https://i.imgur.com/2Ef0KwZ.png)
+
 
 # Performance
 
 ### WARNING: make sure you have a good cooling system/setup
 ### Project kobon can utilize as much of the cpu as you specify
-![Alt text](https://i.imgur.com/szPhFHW.png)
+![Picture of CPU usage](https://i.imgur.com/szPhFHW.png)
