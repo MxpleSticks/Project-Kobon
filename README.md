@@ -7,7 +7,7 @@
 
 The program includes:
 - Simple terminal interface/interactions
-- A solver (heuristic optimization based algorith)
+- A solver (heuristic optimization based algorithm)
 - A viewer (Visualizes JSON data)
 - Remote reporting (via Discord Webhook)
 - CPU-based calculations (via NumPy)
@@ -27,7 +27,7 @@ This gap between what is theoretically possible vs what can actually be construc
 
 # How it works
 
-**Project Kobon** works by using a heuristic optimization algorithm to search for solutions to the Kobon Triangle Problem, without having to check every possible configuration of lines. (Which would take WAY too long)
+**Project Kobon** works by using a heuristic optimization algorithm to search for solutions to the Kobon Triangle Problem, without having to check every possible configuration of lines. (Which would take far too long)
 
 The algorithm works as follows:
 
@@ -52,12 +52,12 @@ This is the gist of what goes on under the hood of **Project Kobon**.
 
 ### Building from Source:
 
-Make sure to have C++ installed --> [Here](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170) <-- <br>
+Make sure to have C++ installed (for viewer to work | uses dearpygui) --> [Here](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170) <-- <br>
 Python 3.13.13 is recommended (for packages) --> [Here](https://www.python.org/downloads/windows/) <--
 
 1. Clone or download the GitHub repo.
 
-2. Install the required dependencies: pip install -r requirements.txt
+2. Install the required dependencies: `pip install -r requirements.txt`
 
 3. Run the program: py main.py or python main.py
 
