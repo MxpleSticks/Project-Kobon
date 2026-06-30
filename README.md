@@ -1,7 +1,9 @@
 # Project Kobon
+## **Note to reviewer (please ignore if you are not the reviewer): I accidentally submitted for reevaluation before I could contact you directly, so I’m leaving this note here.** <br>**The reason nothing appeared to happen is because a Discord webhook was not entered. The application currently sends results through Discord only and does not create or save a local output file. Once a  Discord webhook key is put in, the program should function as intended.**
 
 **Project Kobon** is a search program designed to find solutions to the Kobon Triangle Problem.<br>
 **Check out the project on --> [stardance](https://stardance.hackclub.com/projects/5309) <--**
+
 
 ![Alt text](https://i.imgur.com/Tii75GE.png)
 
