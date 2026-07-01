@@ -74,6 +74,7 @@ Python 3.13.13 is recommended (for packages) --> [Here](https://www.python.org/d
 
 
 # Usage
+**Important: Solver results are sent through a Discord webhook as JSON files and are not saved locally. To use the viewer, download the generated JSON file from Discord and load it into the viewer.**
 
 When the program is launched you will be presented with 3 options:
 
